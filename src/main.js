@@ -8,10 +8,18 @@ require('../node_modules/materialize-css/dist/js/materialize.min.js')
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import firebase from 'firebase'
+
+import * as VueGoogleMaps from "vue2-google-maps";
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyDnOfvmyBs_vIXvKhH7zHGRCuDZdgVgKvU",
+    libraries: "places" // necessary for places input
+  }
+});
 
 Vue.config.productionTip = false
 
+import firebase from 'firebase'
 let app;
 var config = {
   apiKey: "AIzaSyAZJzxWDMFiMQcDg29zbztSUYJ_oCVhR-E",
