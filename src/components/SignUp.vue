@@ -3,19 +3,21 @@
     <div class="row">
         <div class="col m4"></div>
         <div class="col m4" id="sign-up">
-            <h3>Register</h3>
-            <div class="row">
-                <div class="col m2"></div>
-                <div class="col m8">
-                    <input type="text" v-model="email" placeholder="Email">
-                    <input type="password" v-model="password" placeholder="Password">
+            <div class="card z-depth-2" style="padding: 40px;">
+                <h3>Register</h3>
+                <div class="row">
+                    <div class="col m2"></div>
+                    <div class="col m8">
+                        <input type="text" v-model="email" placeholder="Email">
+                        <input type="password" v-model="password" placeholder="Password">
+                    </div>
+                    <div class="col m2"></div>
+                    <div class="col m12" style="margin-top: 20px">
+                        <a class="button is-rounded blue lighten-3 btn-large" v-on:click="signUp">sign up</a>
+                    </div>   
                 </div>
-                <div class="col m2"></div>
-                <div class="col m12" style="margin-top: 20px">
-                    <a class="btn btn-floating btn-large blue lighten-3" v-on:click="signUp"><i class="material-icons">brightness_1</i></a>
-                </div>   
+                <p>or go back to <router-link to="/login">login</router-link></p>
             </div>
-            <span>or go back to <router-link to="/login">login</router-link>.</span>
         </div>
         <div class="col m4"></div>
     </div>
@@ -52,7 +54,7 @@
     #sign-up {
         margin-top: 40px;
         background-color: white;
-        border: 5px solid grey;
+        margin-top: 30vh;
     }
     input {
         margin: 10px 0;
@@ -69,4 +71,5 @@
         margin-top: 20px;
         font-size: 11px;
     }
+    
 </style>

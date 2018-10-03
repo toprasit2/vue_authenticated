@@ -1,24 +1,27 @@
 <template>
   <div class="map">
-    <div class="row"><a href="/#/home" class="left"><i class="material-icons" style="font-size:50px">arrow_back</i></a></div>
-    <div class="row">
-        <div class="col m4"></div>
-        <div class="col m4">
-            <h2>Search and add a pin</h2>
-            <label>
-                <gmap-autocomplete
-                @place_changed="setPlace">
-                </gmap-autocomplete>
-                <a class="btn" @click="addMarker">Add</a>
-            </label>
-        </div>
-        <div class="col m4"></div>
+    <div class="row grey lighten-1" style="margin:0">
+        <a href="#" v-on:click="logout" class="wave-light wave-effect">
+          <div class="right">
+            <i class="material-icons white-text" style="font-size: 50px; margin-top:5px;">exit_to_app</i>
+          </div>
+        </a>
     </div>
-    <div class="center">
+    <nav>
+      <div class="nav-wrapper grey darken-3">
+        <ul class="right hide-on-med-and-down">
+          <li><a class="menu" href="/#/home">Home</a></li>
+          <li><a class="menu" href="/#/weather">Weather</a></li>
+          <li class="active"><a class="menu" href="/#/map">Map</a></li>
+          <li><a class="menu" href="/#/hello">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="center" style="padding-top:15vh;">
         <gmap-map
         :center="center"
         :zoom="17"
-        style="width:80%;  height: 75vh; margin-left: 10%;"
+        style="width:50vw;  height: 60vh; margin-left: 25%;"
         >
         <gmap-marker
             :key="index"
@@ -54,18 +57,6 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    addMarker() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
-        this.center = marker;
-        this.currentPlace = null;
-      }
-    },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
@@ -73,13 +64,28 @@ export default {
           lng: position.coords.longitude
         };
       });
+    },
+    logout: function () {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
     }
   }
 };
 </script>
 
 <style scoped>
-    .map {
-        background-color: aliceblue
-    }
+.map {
+    background-color: aliceblue;
+    height: 100vh;
+}
+.menu:hover{
+  color: white;
+}
+.active a{
+font-weight: bold;
+}
+a{
+  font-size: 30px;
+}
 </style>

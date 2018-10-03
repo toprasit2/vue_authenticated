@@ -2,9 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 require('../node_modules/jquery/dist/jquery.min.js')
+require('../node_modules/bulma/css/bulma.min.css')
 require('../node_modules/materialize-css/dist/css/materialize.min.css')
 require('../node_modules/materialize-css/dist/js/materialize.min.js')
-
 import Vue from 'vue'
 import App from './App'
 import router from './router'

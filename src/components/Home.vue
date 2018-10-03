@@ -1,44 +1,25 @@
 <template>
   <div class="home">
-    <div class="row">
-        <a href="/#/hello" class="wave-light wave-effect">
-          <div class="col m4 light-blue accent-1 block" style="height: 50vh;">
-            <span ><i class="material-icons blue-text text-darken-3" style="font-size: 250px; margin-top:100px;">account_circle</i></span>
-            <h1 class="blue-text text-darken-3">My Group</h1>
-          </div>
-        </a>
-        <a href="/#/weather" class="wave-light wave-effect">
-          <div class="col m4 light-blue accent-2 block" style="height: 50vh;">
-            <span ><i class="material-icons blue-text text-darken-3" style="font-size: 250px; margin-top:100px;">cloud</i></span>
-            <h1 class="blue-text text-darken-3">Weather</h1>
-          </div>
-        </a>
-        <a href="/#/map" class="wave-light wave-effect">
-          <div class="col m4 light-blue accent-3 block" style="height: 50vh;">
-            <span ><i class="material-icons blue-text text-darken-3" style="font-size: 250px; margin-top:100px;">map</i></span>
-            <h1 class="blue-text text-darken-3">Map</h1>
-          </div>
-        </a>
-        <a href="http://www.coe.psu.ac.th/2018/" class="wave-light wave-effect">
-          <div class="col m4 light-blue lighten-3 block" style="height: 50vh;">
-            <span ><img src="https://www.coe.phuket.psu.ac.th/images/logo/LogoCoe.gif" height="250px" style="margin-top:100px;"></span>
-            <h1 class="blue-text text-darken-3">CoE</h1>
-          </div>
-        </a>
-        
-        <a href="http://www.psu.ac.th/" class="wave-light wave-effect">
-          <div class="col m4 light-blue lighten-2 block" style="height: 50vh;">
-            <span ><img src="https://www.computing.psu.ac.th/th/wp-content/uploads/2018/03/Logo-PSU-TH-01.png" height="400px" style="margin-top:100px;"></span>
-          </div>
-        </a>
+    <div class="row grey lighten-1" style="margin:0">
         <a href="#" v-on:click="logout" class="wave-light wave-effect">
-          <div class="col m4 light-blue lighten-1 block" style="height: 50vh;">
-            <span ><i class="material-icons blue-text text-darken-3" style="font-size: 250px; margin-top:100px;">exit_to_app</i></span>
-            <h1 class="blue-text text-darken-3">Logout</h1>
+          <div class="right">
+            <span ><i class="material-icons white-text" style="font-size: 50px; margin-top:5px;">exit_to_app</i></span>
           </div>
         </a>
     </div>
-    
+    <nav>
+      <div class="nav-wrapper grey darken-3">
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a class="menu" href="/#/home">Home</a></li>
+          <li><a class="menu" href="/#/weather">Weather</a></li>
+          <li><a class="menu" href="/#/map">Map</a></li>
+          <li><a class="menu" href="/#/hello">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="center">
+      <h1 style="margin-top:40vh">Welcome</h1>
+    </div>
   </div>
 </template>
 
@@ -66,18 +47,16 @@ export default {
 h1, h5 {
   font-weight: normal;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 .block {
   border: white 2px solid; 
+}
+.menu:hover{
+  color: white;
+}
+a{
+  font-size: 30px;
+}
+.active a{
+  font-weight: bold;
 }
 </style>

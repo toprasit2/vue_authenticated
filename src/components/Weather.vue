@@ -1,6 +1,22 @@
 <template>
   <div class="weather">
-    <div class="row"><a href="/#/home" class="left"><i class="material-icons" style="font-size:50px">arrow_back</i></a></div>
+    <div class="row grey lighten-1" style="margin:0">
+        <a href="#" v-on:click="logout" class="wave-light wave-effect">
+          <div class="right">
+            <span ><i class="material-icons white-text" style="font-size: 50px; margin-top:5px">exit_to_app</i></span>
+          </div>
+        </a>
+    </div>
+    <nav>
+      <div class="nav-wrapper grey darken-3">
+        <ul class="right hide-on-med-and-down">
+          <li><a class="menu" href="/#/home">Home</a></li>
+          <li class="active"><a class="menu" href="/#/weather">Weather</a></li>
+          <li><a class="menu" href="/#/map">Map</a></li>
+          <li><a class="menu" href="/#/hello">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="my-5">
           <form v-on:submit.prevent="getData">
             <div class="row">
@@ -10,7 +26,7 @@
                 <div class="input-group">
                   <input type="text" class="form-control" v-model="city">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                    <button class="button is-rounded green lighten-3 wave-light wave-effect btn-large" type="submit">Submit</button>
                   </div>
                 </div>
               </div>
@@ -21,9 +37,16 @@
           <div class="alert alert-info" v-show="loading">
             Loading...
           </div>
-          <div v-show="chart != null">
-            <canvas id="myChart"></canvas>
+          <div class="row">
+            <div class="col m2"></div>
+            <div class="col m8">
+              <div v-show="chart != null">
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+            <div class="col m2"></div>
           </div>
+          
         </div>
   </div>
 </template>
@@ -35,7 +58,7 @@ export default {
   data: function() {
     return {
         chart: null,
-        city: "",
+        city: "songkhla",
         dates: [],
         temps: [],
         loading: false,
@@ -64,7 +87,7 @@ export default {
           });
 
           this.temps = response.data.list.map(list => {
-            return list.main.temp;
+            return (list.main.temp-32)*5/9;
           });
 
           var ctx = document.getElementById("myChart");
@@ -98,7 +121,7 @@ export default {
                     }
 
                     label += Math.floor(tooltipItem.yLabel);
-                    return label + "°F";
+                    return label + "°C";
                   }
                 }
               },
@@ -123,11 +146,11 @@ export default {
                   {
                     scaleLabel: {
                       display: true,
-                      labelString: "Temperature (°F)"
+                      labelString: "Temperature (°C)"
                     },
                     ticks: {
                       callback: function(value, index, values) {
-                        return value + "°F";
+                        return value + "°C";
                       }
                     }
                   }
@@ -141,6 +164,14 @@ export default {
           this.errored = true;
         })
         .finally(() => (this.loading = false));
+    },
+    ready() {
+        this.getData()
+    },
+    logout: function () {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
     }
   }
 }
@@ -148,8 +179,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .weather {
-    background-color: white;
-    height: 100vh;
-  }
+.menu:hover{
+  color: white;
+}
+.active a{
+  font-weight: bold;
+}
+a{
+  font-size: 30px;
+}
 </style>
