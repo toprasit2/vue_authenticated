@@ -18,7 +18,7 @@
       </div>
     </nav>
     <div class="center">
-        <h1 style="margin-top:40vh">Hello Cartoon</h1>
+        <h1 style="">Hello Cartoon</h1>
         <article v-for="(location, idx) in locations" :key="idx">
             <img :src="location.url">
             <h1>{{ location.name }}</h1>
@@ -42,7 +42,8 @@ export default {
   },
   firestore () {
     return {
-      locations: db.collection('cartoon')
+      locations: db.collection("cartoon")
+                   .orderBy("name", "asc")
     }
   },
   methods: {
@@ -51,9 +52,6 @@ export default {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
-    },
-    showData: () => {
-        let collection = db.collection('cartoon')
     }
   }
 }
